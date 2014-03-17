@@ -8,7 +8,7 @@
 #include "AlphaFilter.h"
 
 void AlphaFilter::setAlpha(float f) {
-    alpha = f > 1. ? 1. f < 0. ? 0 f;
+    alpha = f > 1. ? 1. : f < 0. ? 0 : f;
 }
 
 AlphaFilter::AlphaFilter() {
@@ -20,6 +20,8 @@ AlphaFilter::AlphaFilter(float f) {
 }
 
 AlphaFilter::AlphaFilter(const AlphaFilter& orig) {
+    alpha = orig.alpha;
+    val = orig.val;
 }
 
 AlphaFilter::~AlphaFilter() {

@@ -20,6 +20,7 @@ protected:
     float value();
     float value(float f);
 
+    float alpha;
     float val;
 };
 

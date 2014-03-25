@@ -33,6 +33,6 @@ float AlphaFilter::value(){
 }
 
 float AlphaFilter::value(float f){
-    val = (val - f) * alpha + val;
+    val = (f - val) * alpha + val;
     return val;
 }

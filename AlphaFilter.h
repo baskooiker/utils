@@ -15,11 +15,11 @@ public:
     AlphaFilter(const AlphaFilter& orig);
     virtual ~AlphaFilter();
     
-protected:
     void setAlpha(float f);
     float value();
     float value(float f);
-
+    
+protected:
     float alpha;
     float val;
 };

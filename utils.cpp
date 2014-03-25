@@ -113,27 +113,21 @@ void normalize(float* array, int length) {
 
 float average(float *array, int begin, int end) {
     float sum = 0.;
-    int count = 0;
-    int i;
-    for (i = begin; i <= end; i++) {
+    for (int i = begin; i <= end; i++) {
         sum += array[i];
-        count++;
     }
-    return sum / (float) count;
+    return sum / (float) (end - begin + 1);
 }
 
 void cmndf(float* array, int length) {
     float cmndf[length];
-    for (int i = 0; i < length; i++) {
-        if (i == 0) {
-            cmndf[i] = 1;
-        } else {
-            cmndf[i] = array[i] / average(array, 0, i - 1);
-        }
+    cmndf[0] = 1.f;
+    for (int i = 1; i < length; i++) {
+        cmndf[i] = array[i] / average(cmndf, 0, i - 1);
     }
-//    for(int i = 0; i < length; i++)
-//        array[i] = cmndf[i];
-//        array[0] = 0.0f;
+    for (int i = 0; i < length; i++)
+        array[i] = cmndf[i];
+    //        array[0] = 0.0f;
 }
 
 vector<float> takeSample(vector<float> v) {

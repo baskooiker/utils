@@ -3,8 +3,8 @@ using namespace std;
 #include <list>
 #include <vector>
 #include <deque>
-#include "utils.h"
 #include <cfloat>
+#include "utils.h"
 
 int maxIndex(list<int> v) {
     int index = -1;
@@ -111,12 +111,29 @@ void normalize(float* array, int length) {
     }
 }
 
+float average(vector<float> array, int begin, int end) {
+    float sum = 0.;
+    for (int i = begin; i <= end; i++) {
+        sum += array[i];
+    }
+    return sum / (float) (end - begin + 1);
+}
+
 float average(float *array, int begin, int end) {
     float sum = 0.;
     for (int i = begin; i <= end; i++) {
         sum += array[i];
     }
     return sum / (float) (end - begin + 1);
+}
+
+vector<float> cmndf(vector<float> array, int length) {
+    std::vector<float> cmndf;
+    cmndf.push_back(1.f);
+    for (int i = 1; i < length; i++)
+        cmndf.push_back(array[i] / average(cmndf, 0, i - 1));
+    
+    return cmndf;
 }
 
 void cmndf(float* array, int length) {

@@ -9,8 +9,6 @@
 #include <deque>
 #include <map>
 
-using namespace std;
-
 HistogramBuffer::HistogramBuffer() {
     maxSize = 30;
 }
@@ -23,6 +21,7 @@ HistogramBuffer::HistogramBuffer(const HistogramBuffer& orig) {
 }
 
 HistogramBuffer::~HistogramBuffer() {
+    buffer.clear();
 }
 
 void HistogramBuffer::put(int i) {
@@ -33,7 +32,7 @@ void HistogramBuffer::put(int i) {
 
 int HistogramBuffer::get() {
     // make histogram
-    map<int, int> bufferMap;
+    std::map<int,int> bufferMap;
     for (int i = 0; i < buffer.size(); i++) {
         if (bufferMap.count(buffer[i]) > 0)
             bufferMap[buffer[i]] += 1;
@@ -44,7 +43,8 @@ int HistogramBuffer::get() {
     // find maximum in histogram
     int maxVal = 0;
     int maxI = 0;
-    for (map<int, int>::iterator it = bufferMap.begin(); it != bufferMap.end(); it++) {
+    std::map<int, int>::iterator it;
+    for (it = bufferMap.begin(); it != bufferMap.end(); it++) {
         if (it->second > maxVal) {
             maxVal = it->second;
             maxI = it->first;

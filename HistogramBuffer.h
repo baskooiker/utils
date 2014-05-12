@@ -20,6 +20,7 @@ public:
     virtual ~HistogramBuffer();
     
     void put(int i);
+    int putAndGet(int i);
     int get();
     void clear();
     void drop();

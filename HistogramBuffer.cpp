@@ -30,6 +30,13 @@ void HistogramBuffer::put(int i) {
         buffer.pop_front();
 }
 
+int HistogramBuffer::putAndGet(int i) {
+    buffer.push_back(i);
+    if (buffer.size() > maxSize)
+        buffer.pop_front();
+    return get();
+}
+
 int HistogramBuffer::get() {
     // make histogram
     std::map<int,int> bufferMap;
